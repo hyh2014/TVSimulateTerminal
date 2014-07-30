@@ -26,7 +26,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
-
 import com.external.camera.bluetooth.BluetoothHelper;
 import com.external.camera.utils.Util;
 import com.external.cameraService.helper.SensorHelper;
@@ -85,13 +84,11 @@ public class SocketService extends Service implements ServiceInterface {
 				@Override
 				public void onSensorChanged(SensorEvent event) {
 					// TODO Auto-generated method stub
-					
 				}
 				
 				@Override
 				public void onAccuracyChanged(Sensor sensor, int accuracy) {
 					// TODO Auto-generated method stub
-					
 				}
 			}, mSensor, SensorManager.SENSOR_DELAY_GAME); 
         } catch (Exception e) {
@@ -99,16 +96,16 @@ public class SocketService extends Service implements ServiceInterface {
         	e.printStackTrace();
 		}
         
-    	new Thread(new Runnable() {
-			
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				//while (true) {
-		        	SensorHelper.disposSensor(null);
-				//}
-			}
-		}).start();
+        	new Thread(new Runnable() {
+				
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					//while (true) {
+			        	SensorHelper.disposSensor(null);
+					//}
+				}
+			}).start();
         
     	startListen();
         if (sView == null) {

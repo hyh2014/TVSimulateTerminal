@@ -17,7 +17,6 @@ public class SendHelper {
 			
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				if (sUseBluetooth) {
 					Log.e("SendHelper", "blue tooth send data");
 					sBluetoothhelper.SendData(str);

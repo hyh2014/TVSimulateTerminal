@@ -46,8 +46,8 @@ public class MessageDeliver {
             SensorHelper.disposSensor(new SensorEventByte(string).mEvent);
             return;
         }
-		
         Log.e("MessageDeliver", "index = " + index);
+
         if (-1 == index) {
             sendKeyEvent(string);
             return;
@@ -59,10 +59,11 @@ public class MessageDeliver {
     private void sendMotionEvent(String string, DepartString departString) {
         int motionEventAction = EventHelper.getMotionEventAction(string, departString);
         EventHelper.getPosition(departString, mPosition, sScale, mListener, isTouchMode());
-		Log.e("MessageDeliver", "mPosition[0] = " + mPosition[0]);
         Log.e("MessageDeliver", "mPosition[1] = " + mPosition[1]);
 
         mListener.refreshView(mPosition[0], mPosition[1]);
+        Log.e("MessageDeliver", "mPosition[1] = " + mPosition[1]);
+
         EventHelper.sendPointerSync(motionEventAction, mPosition[0], mPosition[1]);
     }
 

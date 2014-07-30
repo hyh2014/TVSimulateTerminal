@@ -49,17 +49,14 @@ public class ScrollButton extends View {
 
     public ScrollButton(Context context) {
         super(context);
-        //initSensor(context);  
     }
     
     public ScrollButton(Context context, AttributeSet attrs) {
         super(context, attrs);
-        //initSensor(context);
     }
     
     public ScrollButton(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        //initSensor(context);
     }
     
     
@@ -90,8 +87,6 @@ public class ScrollButton extends View {
             	mInfo = Util.ACTION_DOWN + Util.END;
                 moveX = 0;
                 moveY = 0;
-                //mListener.send(mInfo);
-                //return true;
                 break;
             case MotionEvent.ACTION_MOVE:
             	mTime = mTime++;
@@ -130,26 +125,6 @@ public class ScrollButton extends View {
         }
         return true;
     }
-
-	/*
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void onSensorChanged(SensorEvent event) {
-    	//Log.e("client", "onSensorChanged");
-        //disposSensor(event);
-    	if (!isInTouchMode) {
-    		sendSensorMessage(event.values[0], event.values[1]);
-    	}
-        //SensorEventByte sensorEventByte = new SensorEventByte(event);
-        //sensorEventByte = new SensorEventByte(sensorEventByte.toString());
-        //UdpHelper.send(Util.SENSOR_MODE + new SensorEventByte(event).toString());
-    }
-    */
     
     public void sendSensorMessage(float x, float y) {
     	mTime = mTime++;

@@ -20,7 +20,7 @@ import android.view.MotionEvent;
 
 public class SensorScrollButton extends ScrollButton implements SensorEventListener{
 
-	private String mMode = Util.MODE_TOUCH;
+	private String mMode = Util.MODE_SENSORTOTOUCH;
     public SensorScrollButton(Context context) {
         super(context);       
     }
@@ -35,9 +35,10 @@ public class SensorScrollButton extends ScrollButton implements SensorEventListe
     
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-    	if (!Util.MODE_TOUCH.equals(mMode)) {
+    	if (Util.MODE_SENSORTOTOUCH.equals(mMode)) {
     		return true;
     	}
+		
         int action = event.getAction();
         float x = event.getX();
         float y = event.getY();

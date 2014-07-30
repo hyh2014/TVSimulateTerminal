@@ -34,9 +34,12 @@ public class MoveScrollButton extends ScrollButton {
     
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        /*
     	if (!Util.MODE_TOUCH.equals(mMode)) {
     		return true;
     	}
+    	*/
+    	
         int action = event.getAction();
         float x = event.getX();
         float y = event.getY();
@@ -71,6 +74,7 @@ public class MoveScrollButton extends ScrollButton {
 		
         mInfo = mInfo + formatString(x, y);
         mListener.send(mInfo);
+		
         if (Util.MODE_SENSORTOTOUCH.equals(mMode)) {
         	if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL) {
             	mInfo = Util.ACTION_DOWN + Util.END;
@@ -87,19 +91,6 @@ public class MoveScrollButton extends ScrollButton {
         
         return true;
     }
-
-	/*
-    @Override
-    public void onSensorChanged(SensorEvent event) {
-    	if (Util.MODE_SENSORTOTOUCH.equals(mMode)) {
-	    	mDownX = mDownX + event.values[0];
-	    	mDownY = mDownY + event.values[1];
-	    	sendSensorMessage(mDownX, mDownY);
-    	} else if (Util.MODE_SENSOR.equals(mMode)) {
-            SendHelper.send(Util.SENSOR_MODE + new SensorEventByte(event).toString());
-    	}
-    }
-    */
     
     public void setMode(String mode) {
     	mMode = mode;

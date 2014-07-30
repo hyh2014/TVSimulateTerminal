@@ -24,7 +24,6 @@ public class SensorScrollActivity extends Activity implements ScrollListener {
 		setContentView(R.layout.activity_sensorscroll);
 		mButton = (SensorScrollButton) findViewById(R.id.scroll);
 		mButton.setListener(this);
-        //scrollButton.disposSensor(null);
 	}
 	
 	private void setOritation() {
@@ -39,14 +38,11 @@ public class SensorScrollActivity extends Activity implements ScrollListener {
 	public void onResume() {
 		super.onResume();
 		mMode = Util.getMode(this);
-		if (!Util.MODE_TOUCH.equals(mMode)) {
-			initSensor(this);
-		}
+		initSensor(this);
 		mButton.setMode(mMode);
 		if (UdpHelper.getIp() != null) {
-			//UdpHelper.send(Util.ORIENTATION_LANDSCAPE);
 			Util.logd(getClass(), "UdpHelper.getIp() = " + UdpHelper.getIp());
-			SendHelper.send(mMode);
+			send(mMode);
 		}
 	}
 	
@@ -59,16 +55,12 @@ public class SensorScrollActivity extends Activity implements ScrollListener {
         try {
         	mSensorManager.registerListener(mButton, mSensor, SensorManager.SENSOR_DELAY_GAME); 
         } catch (Exception e) {
-			// TODO: handle exception
         	e.printStackTrace();
 		}
-        //expand();
     }
 	
 	public void onPause() {
-		if (!Util.MODE_TOUCH.equals(mMode)) {
-			mSensorManager.unregisterListener(mButton);
-		}
+		mSensorManager.unregisterListener(mButton);
 		super.onPause();
 		send(Util.MODE_KEYBOARD);
 		mButton.onPause();
@@ -76,13 +68,11 @@ public class SensorScrollActivity extends Activity implements ScrollListener {
 	
 	@Override
 	public void refreshInfo(String info) {
-		// TODO Auto-generated method stub
-		
+		//TODO Auto-generated method stub
 	}
 
 	@Override
 	public void send(final String string) {
-		// TODO Auto-generated method stub
 		SendHelper.send(string);        
 	}
 }

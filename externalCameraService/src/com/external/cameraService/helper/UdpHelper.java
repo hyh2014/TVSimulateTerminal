@@ -15,9 +15,6 @@ import java.util.Enumeration;
 import android.content.Context;
 import android.net.wifi.WifiManager;
 import android.util.Log;
-
-import com.external.camera.data.SensorEventByte;
-import com.external.camera.utils.Util;
 import com.external.cameraService.inter.ServiceInterface;
 
 public class UdpHelper {

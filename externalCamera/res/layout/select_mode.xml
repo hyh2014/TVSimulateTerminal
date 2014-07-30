@@ -5,6 +5,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:layout_gravity="center">   
+
     
     <Button
         android:id="@+id/touch_mode" 

@@ -2,6 +2,7 @@ package com.external.cameraClient.customview;
 
 import com.external.camera.utils.Util;
 import com.external.cameraClient.R;
+import com.external.cameraClient.KeyboardScrollActivity;
 import com.external.cameraClient.MoveScrollActivity;
 import com.external.cameraClient.SensorScrollActivity;
 
@@ -20,6 +21,7 @@ public class ModeChangeDialog extends Dialog implements OnClickListener{
     }
 	
     private void initAdapter(Context context) {
+		//findViewById(R.id.keyboard_mode).setOnClickListener(this);
         findViewById(R.id.touch_mode).setOnClickListener(this);
         findViewById(R.id.sensor_mode).setOnClickListener(this);
         findViewById(R.id.sensortotouch_mode).setOnClickListener(this);
@@ -27,10 +29,12 @@ public class ModeChangeDialog extends Dialog implements OnClickListener{
 
 	@Override
 	public void onClick(View view) {
-		// TODO Auto-generated method stub
 		int id = view.getId();
 		String mode = Util.MODE_KEYBOARD;
 		switch (id) {
+			//case R.id.keyboard_mode:
+			//	mode = Util.MODE_KEYBOARD;
+			//	break;
 			case R.id.touch_mode:
 				mode = Util.MODE_TOUCH;
 				break;
@@ -45,6 +49,7 @@ public class ModeChangeDialog extends Dialog implements OnClickListener{
 		}
 		Util.setMode(getContext(), mode);
 
+   
 		if(mode == Util.MODE_SENSORTOTOUCH || mode == Util.MODE_SENSOR)
 		{
 			startSensorScrollActivity();
@@ -54,7 +59,15 @@ public class ModeChangeDialog extends Dialog implements OnClickListener{
 			startMoveScrollActivity();
 		}
 		
-		dismiss();
+	}
+
+	private void startKeyboardScrollActivity() {
+		Context context = getContext();
+        Intent intent = new Intent(getContext(), KeyboardScrollActivity.class);
+        intent.putExtra(Util.ORIENTATION, Util.getOrientation(context));
+        context.startActivity(intent);
+        return;
+        
 	}
 	
 	private void startMoveScrollActivity() {

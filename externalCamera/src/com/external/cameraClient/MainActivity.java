@@ -44,8 +44,6 @@ public class MainActivity extends Activity implements OnClickListener,
         mScrollButton = (CircleScrollButton) findViewById(R.id.scroll);
         setClickListener();
         Util.initScreenRect(this);
-
-        //ScrollButton.disposSensor(null);
         SendHelper.sBluetoothhelper.findBluetoothDevice();
     }
     
@@ -65,14 +63,12 @@ public class MainActivity extends Activity implements OnClickListener,
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.activity_main, menu);
         return true;
     }
 
     @Override
     public void onClick(View v) {
-        // TODO Auto-generated method stub
     	if (UdpHelper.getIp() == null) {
     		showToast();
     	}
@@ -188,7 +184,6 @@ public class MainActivity extends Activity implements OnClickListener,
     }
     
     public void onPause() {
-    	//mSensorManager.unregisterListener(mScrollButton);
         if (mHelper != null) {
             mHelper.IsThreadDisable = true;
             try {
@@ -197,7 +192,6 @@ public class MainActivity extends Activity implements OnClickListener,
             }
         }
         mScrollButton.onPause();
-        //mThread = null;
         super.onPause();
     }
     
@@ -209,22 +203,4 @@ public class MainActivity extends Activity implements OnClickListener,
     public void onDestroy() {
     	super.onDestroy();
     }
-
-	
-    /*
-    public SensorManager mSensorManager;
-    public Sensor mSensor;
-    
-    private void initSensor(Context context) {
-    	mSensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
-        mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        try {
-        	mSensorManager.registerListener(mScrollButton, mSensor, SensorManager.SENSOR_DELAY_GAME); 
-        } catch (Exception e) {
-			// TODO: handle exception
-        	e.printStackTrace();
-		}
-        //expand();
-    }
-    */
 }

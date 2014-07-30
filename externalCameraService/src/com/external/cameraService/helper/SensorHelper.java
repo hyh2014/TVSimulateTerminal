@@ -7,14 +7,16 @@ import java.util.ArrayList;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.util.Log;
-import com.external.cameraService.helper.SensorJniHelper;
+
+
 
 public class SensorHelper {
     private static ArrayList<Object> listBack = new ArrayList<Object> ();
-	private static SensorJniHelper sensorHelper = new SensorJniHelper();
+    private static int iCount = 0;
 	
     public static void disposSensor(SensorEvent event) {
 		try {
+	/*
 			Class<?> sensorManager = Class.forName("android.hardware.SystemSensorManager");
 			
 			Field expand = sensorManager.getDeclaredField("sListeners");
@@ -37,11 +39,36 @@ public class SensorHelper {
 			}
 			
 			Class<?> listenerDelegate = Class.forName("android.hardware.SystemSensorManager$ListenerDelegate");
-			
+	*/		
 			Sensor sensor = event.sensor;
-	        float[] floats = event.values;
-	        long[] timestamp = {event.timestamp};
-	        int accuracy = event.accuracy;
+	             float[] floats = event.values;
+	             long[] timestamp = {event.timestamp};
+	             int accuracy = event.accuracy;
+			int type =sensor.getType();
+			
+			int x = (int)(floats[0]*1000000);
+			int y = (int)(floats[1]*1000000);
+			int z = (int)(floats[1]*1000000);
+			int ret = 0;
+			SensorJniHelper sensorJni = new SensorJniHelper();
+/*
+			iCount++;
+			if(iCount > 10)
+			{
+				return;
+			}
+*/
+			Log.e("SensorHelper", "x="+floats[0]+" y="+floats[1]+" z="+floats[2]);
+			ret = sensorJni.sendSensorDataRemote(type, floats, 0, 0); 
+			if(ret < 0)
+			{
+				Log.e("SensorHelper", "sendSensor data error ret="+ret);
+				return;
+			}
+			
+			
+
+			/*
 			
 			Class<?> [] params = {sensor.getClass(), 
 					floats.getClass(), timestamp.getClass(), int.class};
@@ -50,19 +77,10 @@ public class SensorHelper {
 					params[0], params[1], params[2], params[3]);
 			method.setAccessible(true);
 
-            int iSensorType = event.sensor.getType();
-			float fGX = event.values[0];
-			float fGY = event.values[1];
-			float fGZ = event.values[2];
-			
-            Log.e("SensorHelper", "iSensorType = " + iSensorType);
-			Log.e("SensorHelper", "x, y, z = " + fGX + fGY + fGZ);
-			
 			for (int i = 0; i < listBack.size(); i++) {
-				//method.invoke(listBack.get(i), sensor, floats, timestamp, accuracy);
-				//sensor type, x, y, z, 0, 0;
-        		sensorHelper.sendSensorEventRemote(iSensorType, (int)fGX, (int)fGY, (int)fGZ, 0, 0);
-			}			
+				method.invoke(listBack.get(i), sensor, floats, timestamp, accuracy);
+			}	
+			*/
 			
 		} catch (Exception e) {
 			e.printStackTrace();

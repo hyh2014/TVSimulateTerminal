@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 
 import com.external.camera.helper.SendHelper;
+import com.external.camera.utils.Util;
 import com.external.cameraClient.R;
 import com.external.cameraClient.udp.UdpHelper;
 
@@ -54,7 +55,6 @@ public class SettingIpDialog extends Dialog implements TextWatcher,
 
     @Override
     public void onClick(View v) {
-        // TODO Auto-generated method stub
         int id = v.getId();
         switch (id) {
             case R.id.ok:
@@ -63,8 +63,6 @@ public class SettingIpDialog extends Dialog implements TextWatcher,
                     return;
                 }
                 UdpHelper.setIp(ip);
-                //String info = Util.START_CONN + UdpHelper.GetHostIp();
-                //UdpHelper.send(info);
                 showToast(ip);
                 mEditText.setText(null);
                 break;
@@ -75,6 +73,10 @@ public class SettingIpDialog extends Dialog implements TextWatcher,
             	Intent intent = new Intent(Settings.ACTION_BLUETOOTH_SETTINGS);
             	intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             	getContext().startActivity(intent);
+				/*
+            	SendHelper.send(Util.MODE_KEYBOARD);
+		        SendHelper.send(Util.START_CONN + Util.SCREEN_SIZE.x);
+				*/
             	break;
             case R.id.wifimode:
             	SendHelper.sUseBluetooth = false;

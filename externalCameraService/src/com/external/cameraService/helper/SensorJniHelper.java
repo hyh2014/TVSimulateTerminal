@@ -20,6 +20,7 @@ public class SensorJniHelper {
     static {
         System.loadLibrary("sensorjni_jni");
     }
-    public native int sendSensorEventRemote(int sensorType,int x, int y, int z, int accuracy,int timeStamp); 
+  //  public native int sendSensorEventRemote(int sensorType,int x, int y, int z, int accuracy,int timeStamp); 
+    public native int sendSensorDataRemote(int sensorType,float values[], int accuracy,int timeStamp); 
 }
 

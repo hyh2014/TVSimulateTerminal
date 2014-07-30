@@ -82,6 +82,5 @@
                 style="@style/button_style"
                 android:text="@string/cancel"/>
         </LinearLayout>
-     </RelativeLayout>
-             
+     </RelativeLayout>     
 </LinearLayout>

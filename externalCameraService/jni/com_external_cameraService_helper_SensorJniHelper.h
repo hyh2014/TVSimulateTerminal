@@ -15,6 +15,14 @@ extern "C" {
 JNIEXPORT jint JNICALL Java_com_external_cameraService_helper_SensorJniHelper_sendSensorEventRemote
   (JNIEnv *, jobject, jint, jint, jint, jint, jint, jint);
 
+/*
+ * Class:     com_external_cameraService_helper_SensorJniHelper
+ * Method:    sendSensorDataRemote
+ * Signature: (I[FII)I
+ */
+JNIEXPORT jint JNICALL Java_com_external_cameraService_helper_SensorJniHelper_sendSensorDataRemote
+  (JNIEnv *, jobject, jint, jfloatArray, jint, jint);
+
 #ifdef __cplusplus
 }
 #endif

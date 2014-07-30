@@ -67,18 +67,11 @@ public class EventHelper {
             subString(departString.end, departString);
             position[0] = Float.parseFloat(departString.start);
             subString(departString.end, departString);
-            position[1] = Float.parseFloat(departString.start);
-
-			Log.e("EventHelper", "position[0] = " + position[0]);
-			Log.e("EventHelper", "position[1] = " + position[1]);
-			
+            position[1] = Float.parseFloat(departString.start); 
         } catch (Exception e) {
             e.printStackTrace();
             position[0] = position[1] = 0;
         }
-
-		Log.e("EventHelper", "position[0] 1 = " + position[0]);
-		Log.e("EventHelper", "position[1] 1 = " + position[1]);
         
         position[0] = position[0] * scale;
 		position[1] = position[1] * scale;
@@ -91,33 +84,24 @@ public class EventHelper {
         } else {
         	return false;
         }
-		Log.e("EventHelper", "position[0] 111= " + position[0]);
-		Log.e("EventHelper", "position[1] 111= " + position[1]);
+		Log.e("EventHelper", "position[0] 11= " + position[0]);
 
         if (position[0] < 0) {
         	position[0] = 0;
         }
-		Log.e("EventHelper", "position[0] 1111= " + position[0]);
+		Log.e("EventHelper", "position[0] 11= " + position[0]);
 
         if (position[1] < 0) {
         	position[1] = 0;
         }
-        Log.e("EventHelper", "position[1] 1111= " + position[1]);
-		
-		Log.e("EventHelper", "Util.SCREEN_HEIGHT= " + Util.SCREEN_HEIGHT);
-		Log.e("EventHelper", "Util.SCREEN_WIDTH= " + Util.SCREEN_WIDTH);
-		
         if (position[0] > Util.SCREEN_WIDTH) {
         	position[0] = Util.SCREEN_WIDTH;
         }
+		Log.e("EventHelper", "position[0] 11= " + position[0]);
 
         if (position[1] > Util.SCREEN_HEIGHT) {
         	position[1] = Util.SCREEN_HEIGHT;
         }
-
-		Log.e("EventHelper", "position[0] 11111= " + position[0]);
-		Log.e("EventHelper", "position[1] 11111= " + position[1]);
-		
         return true;
     }
     
